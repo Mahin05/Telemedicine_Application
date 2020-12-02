@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ <title>Telemedicine App</title>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       <link rel="shortcut icon" type="image/x-icon" href="./static/img/logo2.png">
+	<style>
+	.inp_file{
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+	body{
+  font-family: 'Poiret One', cursive;
+  background: #3494E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: 	#000000; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+h4{
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+}
+.form-wrapper{
+  background: #fff;
+  border-radius: 5px;
+  padding: 50px;
+}
+.form-control, .custom-select{
+  border-radius: 0px;
+    color: #495057;
+    background-color: #f1f1f1;
+    border-color: none;
+
+
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #ffffff;
+    border:1px solid #b5b6b3;
+    outline: 0;
+    box-shadow: none;
+
+}
+
+.btn{
+  background: #3494E6;
+  border: #3494E6;
+  padding: 0.6rem 3rem;
+  font-weight: bold;
+}
+.btn:hover, .btn:focus, .btn:active, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
+  background: #3494E6;
+  border: #3494E6;
+  outline: 0;
+}
+	</style>
+ </head>
+ <body>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    const socket = io.connect("http://127.0.0.1:5000");
+</script>
+ <section class="contact-from pt-4">
+<div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-7 mx-auto">
+                      <div class="form-wrapper">
+                        <div class="row">
+                             <h2>TeleHealth</h2>
+                          <div class="col-md-12">
+                            <h4>Login</h4>
+                          </div>
+                        </div>
+<form method="post" action="/login">
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type = "text"  name = "username" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type = "password"  name = "password" placeholder="Password">
+                                    </div>
+                                </div>
+                                </div>
+
+
+
+                            </div><br>
+
+      <div class="row">
+            <button class="btn btn-primary mx-auto">Sign in</button>
+                            </div>
+    {% if message %}
+        <span style="color:red">{{message}}</span>
+        {% endif %}
+                        </form><br>
+                          <p>Not registered?<a href="/registration">Click here</a></p>
+                    </div>
+                </div>
+            </div>
+
+  </div>
+  </section>
+ </body>
+ </html>
