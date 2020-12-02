@@ -20,6 +20,7 @@ login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
 
+#User signin
 @app.route('/')
 @login_required
 def home():
@@ -41,6 +42,7 @@ def login():
             message = "Login failed"
     return render_template('login.html', message=message)
 
+#User signup
 @app.route('/registration')
 def signin():
     return render_template('signup.html')
@@ -67,8 +69,7 @@ def signup():
             message = "User already exists!"
     return render_template('signup.html', message=message)
 
-
-
+#User profile edit
 @app.route('/update/<username>', methods=["POST","GET"])
 def update(username):
     dataa = fetch_database.get_collection('users')
@@ -76,7 +77,7 @@ def update(username):
     if request.method == 'POST':
         dataa.update_one({"_id":username},
                          {
-                             "$set": {"id":request.form.get('username'),
+                             "$set": {
                                       "email": request.form.get('email'),
                                       "contact": request.form.get('contact'),
                                       "gender": request.form.get('gender'),
