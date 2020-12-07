@@ -69,7 +69,7 @@ def signup():
             message = "User already exists!"
     return render_template('signup.html', message=message)
 
-#User profile edit
+#Edit Account
 @app.route('/update/<username>', methods=["POST","GET"])
 def update(username):
     dataa = fetch_database.get_collection('users')
@@ -86,6 +86,17 @@ def update(username):
                          })
         return redirect(url_for('home'))
     return render_template('Edit_Profile.html', user =user)
+
+#Delete Account
+@app.route('/delete/<username>', methods=["POST","GET"])
+@login_required
+def delete(username):
+    message = ''
+    dataa = fetch_database.get_collection('users')
+    # user = dataa.find_one({'_id':username})
+    dataa.delete_many({'_id': username})
+    message = 'You are no longer a user Please Signup'
+    return render_template('login.html', message = message)
 
 #Profile View
 @app.route('/user/<username>')
