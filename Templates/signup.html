@@ -1,146 +1,156 @@
 <!DOCTYPE html>
- <html>
- <head>
- <title>Telemedicine App</title>
- <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       <link rel="shortcut icon" type="image/x-icon" href="./static/img/logo2.png">
-
-	<style>
-	.inp_file{
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
-	body{
-  font-family: 'Poiret One', cursive;
-  background: #3494E6;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #EC6EAD, #3494E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-h4{
-  font-weight: bold;
-  margin-bottom: 2.5rem;
-}
-.form-wrapper{
-  background: #fff;
-  border-radius: 5px;
-  padding: 50px;
-}
-.form-control, .custom-select{
-  border-radius: 0px;
-    color: #495057;
-    background-color: #f1f1f1;
-    border-color: none;
-
-
-}
-
-.form-control:focus {
-    color: #495057;
-    background-color: #ffffff;
-    border:1px solid #b5b6b3;
-    outline: 0;
-    box-shadow: none;
-
-}
-
-.btn{
-  background: #3494E6;
-  border: #3494E6;
-  padding: 0.6rem 3rem;
-  font-weight: bold;
-}
-.btn:hover, .btn:focus, .btn:active, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
-  background: #3494E6;
-  border: #3494E6;
-  outline: 0;
-}
-	</style>
- </head>
- <body>
- <section class="contact-from pt-4">
-<div class="container">
-                <div class="row mt-5">
-                    <div class="col-md-7 mx-auto">
-                      <div class="form-wrapper">
-                        <div class="row">
-                            <h2>TeleHealth</h2>
-                          <div class="col-md-12">
-                            <h4>Registration</h4>
-                          </div>
-                        </div>
+<html>
+  <head>
+    <title>Telemedicine App</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #eee;
+      }
+      body {
+      background: url("/static/img/page_logo1.jpg") no-repeat center;
+      background-size: cover;
+      }
+      h1, h2 {
+      text-transform: uppercase;
+      font-weight: 400;
+      }
+      h2 {
+      margin: 0 0 0 8px;
+      }
+      .main-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.5);
+      }
+      .left-part, form {
+      padding: 25px;
+      }
+      .left-part {
+      text-align: center;
+      }
+      .fa-graduation-cap {
+      font-size: 72px;
+      }
+      form {
+      background: rgba(0, 0, 0, 0.7);
+      }
+      .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      }
+      .info {
+      display: flex;
+      flex-direction: column;
+      }
+      input, select {
+      padding: 5px;
+      margin-bottom: 30px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #eee;
+      }
+      input::placeholder {
+      color: #eee;
+      }
+      option:focus {
+      border: none;
+      }
+      option {
+      background: black;
+      border: none;
+      }
+      .checkbox input {
+      margin: 0 10px 0 0;
+      vertical-align: middle;
+      }
+      .checkbox a {
+      color: #26a9e0;
+      }
+      .checkbox a:hover {
+      color: #85d6de;
+      }
+      .btn-item, button {
+      padding: 10px 5px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: none;
+      background: #26a9e0;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      color: #fff;
+      }
+      .btn-item {
+      display: inline-block;
+      margin: 20px 5px 0;
+      }
+      button {
+      width: 100%;
+      }
+      button:hover, .btn-item:hover {
+      background: #85d6de;
+      }
+      @media (min-width: 568px) {
+      html, body {
+      height: 100%;
+      }
+      .main-block {
+      flex-direction: row;
+      height: calc(100% - 50px);
+      }
+      .left-part, form {
+      flex: 1;
+      height: auto;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-block">
+      <div class="left-part">
+        <i class="fas fa fa-heartbeat fa-10x"></i>
+        <h1>TeleHealth</h1>
+      </div>
 <form method="post" action="/signup" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type = "text" class="form-control" name = "username" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type = "email" class="form-control" name = "email" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type = "password" class="form-control" name = "password" placeholder="Password">
-                                    </div>
-                                </div>
-                                </div>
-
-                              <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type = "text" class="form-control" name = "contact" placeholder="Phone number">
-                                    </div>
-                                </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-									  <div class="form-check form-check-inline">
-										<input class="form-check-input" name = "gender" type = "radio" name="inlineRadioOptions" id="inlineRadio1" value="Male">
-										<label class="form-check-label" for="inlineRadio1">Male</label>
-									  </div>
-									   <div class="form-check form-check-inline">
-										<input class="form-check-input" name = "gender" type = "radio" name="inlineRadioOptions" id="inlineRadio2" value="Female">
-										<label class="form-check-label" for="inlineRadio1">Female</label>
-									  </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type = "date" name = "dob" class="form-control">
-                                    </div>
-                               </div>
-							   <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label class="form-check-label" >Upload Profile  Pic  <i class="fa fa-camera ml-3" aria-hidden="true" style="color:blue;"></i> </label>
+        <div class="title">
+          <i class="fas fa-pencil-alt"></i>
+          <h2>signup here</h2>
+        </div>
+        <div class="info">
+          <input class="fname" type="text" name="username" placeholder="Full name">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <input type="text" name="contact" placeholder="Phone number">
+          <input type = "date" name = "dob" class="form-control">
+          <select>
+            <option value="course-type"  selected>Gender*</option>
+            <option value="short-courses" name = "gender">Male</option>
+            <option value="featured-courses" name = "gender">Female</option>>
+          </select>
+          <label class="form-check-label" >Upload Profile  Pic  <i class="fa fa-camera ml-3" aria-hidden="true" style="color:blue;"></i> </label>
     <input id="profile_pic" name = "profile_pic" class="inp_file" type = "file">
-                                    </div>
-                               </div>
+        </div>
 
-
-
-                            </div>
-      <div class="row">
-            <button class="btn btn-primary mx-auto">Register</button>
-                            </div>
-    {% if message %}
+        <button >Submit</button>
+          {% if message %}
         <span style="color:red">{{message}}</span>
         {% endif %}
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-  </div>
-  </section>
- </body>
- </html>
+      </form>
+    </div>
+  </body>
+</html>
