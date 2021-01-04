@@ -10,8 +10,6 @@ class User():
         self.dob = dob
         self.profile_pic = profile_pic
 
-
-
     @staticmethod
     def is_authenticated():
         return True
@@ -27,3 +25,16 @@ class User():
 
     def check_password(self, password_input):
         return check_password_hash(self.password, password_input)
+class Contact():
+    def __init__(self,name,email,message):
+        self.name = name
+        self.email = email
+        self.message = message
+class Appointment():
+    def __init__(self,username,doctors,diesease,contact,datetime,subject):
+        self.username= username
+        self.doctors = doctors
+        self.diesease = diesease
+        self.contact = contact
+        self.datetime = datetime
+        self.subject = subject

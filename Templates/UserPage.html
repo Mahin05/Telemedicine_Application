@@ -188,7 +188,7 @@ body{
   margin-top: 70px;
   margin-left: 250px;
   padding: 15px;
-  background: url(/static/background.jpg)no-repeat;
+  background: url(/static/preview16.jpg)no-repeat;
   background-size: cover;
   height: 100vh;
   transition: 0.3s;
@@ -251,19 +251,19 @@ body{
 					<center class="profile">
 					<img src="/static/Uploads/{{current_user['profile_pic']}}" class="col-md-3 mb-2"><p>{{current_user.username}}</p>
 					</center>
-					<li class="item">
-						<a href="#" class="menu-btn">
-							<i class="fas fa-desktop"></i><span>Dashboard</span>
-						</a>
-					</li>
 					<li class="item" id="profile">
 						<a href="{{ url_for('user', username=current_user.username) }}" class="menu-btn">
 							<i class="fas fa-user-circle"></i><span>Profile</span>
 						</a>
 					</li>
+					<li class="item">
+						<a href="/appointment" class="menu-btn">
+							<i class="fas fa fa-calendar"></i><span>Appointment</span>
+						</a>
+					</li>
 					<li class="item" id="messages">
-						<a href="#messages" class="menu-btn">
-							<i class="fas fa-envelope"></i><span>Messages <i class="fas fa-chevron-down drop-down"></i></span>
+						<a href="/inbox" class="menu-btn">
+							<i class="fas fa-envelope"></i><span>Messages </span>
 						</a>
 						<div class="sub-menu">
 							<a href="#"><i class="fas fa-envelope"></i><span>New</span></a>
@@ -280,11 +280,11 @@ body{
 							<a href="#"><i class="fas fa-language"></i><span>Language</span></a>
 						</div>
 					</li>
-					<li class="item">
-						<a href="#" class="menu-btn">
-							<i class="fas fa-info-circle"></i><span>About</span>
+					<li class="item" id="messagess">
+						<a href="/ChatBot" class="menu-btn">
+							<i class='fab fa-facebook-messenger' style='font-size:36px;color:white'></i><span></span>
 						</a>
-					</li>
+                    </li>
 				</div>
 			</div>
 			<!--sidebar end-->

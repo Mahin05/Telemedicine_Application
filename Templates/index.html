@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Telemedicine App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+            <a class="nav-link" href="/">Home</a>
+<!--<h1>Telemedicine</h1>-->
+<!--<h3>{{ message }}</h3>-->
+<!--<h1>HI {% if current_user.is_authenticated %}{{current_user.username}}{% else %}Guest!{% endif %}</h1><br>-->
+<div>
+<i class="fa fa-commenting">
+    {% for room in rooms %}
+        <a href="/rooms/{{ room._id.room_id }}">{{ room.room_name }}</a>
+    {% endfor %}
+</i>
+</div>
+<span>Your Doctor will text You just in Your Appointment Time, Please wait! Thank you.</span>
+</body>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>-->
+<!--<script>-->
+<!--    const socket = io.connect("http://127.0.0.1:5000");-->
+<!--</script>-->
+</html>
