@@ -1,4 +1,3 @@
-
 from datetime import datetime
 from os import abort
 
@@ -20,7 +19,7 @@ from flask_pymongo import PyMongo
 from pymongo.errors import DuplicateKeyError
 from db import get_user, save_user, save_room, add_room_members, get_rooms_for_user, get_room, is_room_admin, \
     get_room_members, is_room_member, update_room, remove_room_members, save_message, get_messages, save_contact, \
-    fetch_database, send_appointment
+    fetch_database, send_appointment, get_appointment
 
 bot = ChatBot('Quick Ask') #create the bot
 
@@ -96,13 +95,13 @@ def signup():
         email = request.form.get('email')
         password = request.form.get('password')
         contact = request.form.get('contact')
-        gender = request.form.get('gender')
         dob = request.form.get('dob')
+        gender = request.form.get("gender")
         file = request.files["profile_pic"]
         file.save(os.path.join(app.config['UPLOAD_DIR'], file.filename))
         try:
-            save_user(username, email, password,contact,gender,dob,file.filename)
-            return redirect(url_for('UserPage'))
+            save_user(username, email, password,contact,dob,gender,file.filename)
+            return redirect(url_for('login'))
         except DuplicateKeyError:
             message = "User already exists!"
     return render_template('signup.html', message=message)
@@ -167,22 +166,32 @@ def appointment():
 @login_required
 def sendappointment():
     message = ''
-    if request.method == 'POST':
-        username = request.form.get('username')
-        doctors = request.form.get('doctors')
-        diesease = request.form.get('diesease')
-        contact = request.form.get("contact")
-        datetime = request.form.get('datetime')
-        subject = request.form.get('subject')
-        send_appointment(username, doctors, diesease, contact, datetime, subject)
-        message = 'Appointment Submitted, You will be notified via an email. THANK YOU!'
-        return render_template('appointment.html', message=message)
-    return render_template('appointment.html', message=message)
-# @app.route('/appointmentdetails')
-# @login_required
-# def AppointmentDetails():
-#     AppointmentDetails = mongo.db.appointments.find()
-#     return render_template("AppointmentDetails.html",AppointmentDetails=AppointmentDetails)
+    if request.method == "POST":
+        try:
+            PatientName = request.form["username"]
+            DoctorName = request.form["doctors"]
+            Disease = request.form["disease"]
+            Contact = request.form["contact"]
+            Schedule = request.form["datetime"]
+            with sqlite3.connect("Appointment.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT into Appointment(PatientName, DoctorName, Disease, Contact, Schedule) values (?,?,?,?,?)",(PatientName,DoctorName,Disease,Contact,Schedule))
+                con.commit()
+                message = "Appointment successfully Added"
+                return render_template("appointment.html", message=message)
+                con.close()
+        except:
+            con.rollback()
+            message = "Something Went Wrong!!"
+@app.route('/AppointmentDetails')
+@login_required
+def AppointmentDetails():
+    con = sqlite3.connect("Appointment.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("select * from Appointment")
+    rows = cur.fetchall()
+    return render_template("AppointmentDetails.html", rows=rows, )
 
 @app.route('/rooms/<room_id>/edit', methods=['GET', 'POST'])
 @login_required
